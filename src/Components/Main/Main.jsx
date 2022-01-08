@@ -1,6 +1,7 @@
 import CartProduct from "./CartProduct";
+import Price from "./Price";
 
-function Main({ products, setProducts, removeFromCart, addToCart }) {
+function Main({ products, setProducts,  addToCart }) {
   return (
     <main id="cart">
       <h2>Your Cart</h2>
@@ -15,7 +16,6 @@ function Main({ products, setProducts, removeFromCart, addToCart }) {
                   product={product}
                   products={products}
                   setProducts={setProducts}
-                  removeFromCart={removeFromCart}
                   addToCart={addToCart}
                 />
               );
@@ -24,24 +24,7 @@ function Main({ products, setProducts, removeFromCart, addToCart }) {
         </ul>
       </div>
 
-      <div className="total-section">
-        <div>
-          <h3>Total</h3>
-        </div>
-
-        <div>
-          <span className="total-number">
-            {products
-              .reduce((value, el) => {
-                if (el.quantityInCart) {
-                  value += el.quantityInCart * el.price;
-                }
-                return value;
-              }, 0)
-              .toFixed(2)}
-          </span>
-        </div>
-      </div>
+      <Price products={products}/>
     </main>
   );
 }

@@ -92,22 +92,7 @@ function App() {
       return item;
     });
   }
-  function removeFromCart(products, product) {
-    return products.map((item) => {
-      if (item.quantityInStore >= 0) {
-        return item.id === product.id
-          ? {
-              ...item,
-              // quantityInCart: item.quantityInCart++,
-              // quantityInStore: item.quantityInStore--,
-              quantityInCart: item.quantityInCart - 1,
-              quantityInStore: item.quantityInStore + 1,
-            }
-          : item;
-      }
-      return item;
-    });
-  }
+  
   //  let arrrrr=[<li >
   //                     <img
   //                       className="cart--item-icon"
@@ -182,7 +167,7 @@ function App() {
         setProducts={setProducts}
         addToCart={addToCart}
       ></Header>
-      <Main products={products} setProducts={setProducts} removeFromCart={removeFromCart} addToCart={addToCart}/>
+      <Main products={products} setProducts={setProducts}  addToCart={addToCart}/>
     </>
   );
 }
