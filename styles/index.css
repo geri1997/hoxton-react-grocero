@@ -8,7 +8,7 @@
 
 /* Typography */
 
-body {
+#root {
   font-family: 'Trebuchet MS', 'Lucida Sans', Arial, sans-serif;
   color: var(--primary-color-darker);
   display: grid;

@@ -4,12 +4,12 @@ import ReactDOM from "react-dom";
 
 
 import "../styles/index.css";
-import StoreItemsList from "./Components/StoreItemsList";
+import App from "./App";
 
 
 ReactDOM.render(
     <StrictMode>
-        <StoreItemsList />
+        <App />
     </StrictMode>,
-    document.querySelector(".item-list.store--item-list")
+    document.querySelector("#root")
 );

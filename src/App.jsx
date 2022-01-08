@@ -1,14 +1,190 @@
-import { useState } from 'react'
-
+import { useState } from "react";
+import Header from "./Components/Header/Header";
+import Main from "./Components/Main/Main";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([
+    {
+      id: 1, // <- the item id matches the icon name in the assets/icons folder
+      name: "beetroot",
+      price: 0.35,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 2, // <- the item id matches the icon name in the assets/icons folder
+      name: "carrot",
+      price: 0.5,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 3, // <- the item id matches the icon name in the assets/icons folder
+      name: "apple",
+      price: 0.45,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 4, // <- the item id matches the icon name in the assets/icons folder
+      name: "apricot",
+      price: 0.15,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 5, // <- the item id matches the icon name in the assets/icons folder
+      name: "avocado",
+      price: 0.25,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 6, // <- the item id matches the icon name in the assets/icons folder
+      name: "bananas",
+      price: 0.35,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 7, // <- the item id matches the icon name in the assets/icons folder
+      name: "bell-pepper",
+      price: 0.4,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 8, // <- the item id matches the icon name in the assets/icons folder
+      name: "berry",
+      price: 0.8,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 9, // <- the item id matches the icon name in the assets/icons folder
+      name: "blueberry",
+      price: 0.9,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+    {
+      id: 10, // <- the item id matches the icon name in the assets/icons folder
+      name: "eggplant",
+      price: 0.75,
+      quantityInStore: 10,
+      quantityInCart: 0,
+    },
+  ]);
 
+  function addToCart(products, product) {
+    return products.map(function (item) {
+      if (0 < item.quantityInStore && item.quantityInStore <= 10) {
+        return item.id === product.id
+          ? {
+              ...item,
+              // quantityInCart: item.quantityInCart++,
+              // quantityInStore: item.quantityInStore--,
+              quantityInCart: item.quantityInCart + 1,
+              quantityInStore: item.quantityInStore - 1,
+            }
+          : item;
+      }
+      return item;
+    });
+  }
+  function removeFromCart(products, product) {
+    return products.map((item) => {
+      if (item.quantityInStore >= 0) {
+        return item.id === product.id
+          ? {
+              ...item,
+              // quantityInCart: item.quantityInCart++,
+              // quantityInStore: item.quantityInStore--,
+              quantityInCart: item.quantityInCart - 1,
+              quantityInStore: item.quantityInStore + 1,
+            }
+          : item;
+      }
+      return item;
+    });
+  }
+  //  let arrrrr=[<li >
+  //                     <img
+  //                       className="cart--item-icon"
+  //                       src={`../../assets/icons/001-beetroot.svg`}
+  //                       alt={`beetroot`}
+  //                     />
+  //                     <p>beetroot</p>
+  //                     <button
+
+  //                       className="quantity-btn remove-btn center"
+  //                     >
+  //                       -
+  //                     </button>
+  //                     <span className="quantity-text center">
+
+  //                     </span>
+  //                     <button
+
+  //                       className="quantity-btn add-btn center"
+  //                     >
+  //                       +
+  //                     </button>
+  //                   </li>,<li >
+  //                     <img
+  //                       className="cart--item-icon"
+  //                       src={`../../assets/icons/001-beetroot.svg`}
+  //                       alt={`beetroot`}
+  //                     />
+  //                     <p>beetroot</p>
+  //                     <button
+
+  //                       className="quantity-btn remove-btn center"
+  //                     >
+  //                       -
+  //                     </button>
+  //                     <span className="quantity-text center">
+
+  //                     </span>
+  //                     <button
+
+  //                       className="quantity-btn add-btn center"
+  //                     >
+  //                       +
+  //                     </button>
+  //                   </li>,<li >
+  //                     <img
+  //                       className="cart--item-icon"
+  //                       src={`../../assets/icons/001-beetroot.svg`}
+  //                       alt={`beetroot`}
+  //                     />
+  //                     <p>beetroot</p>
+  //                     <button
+
+  //                       className="quantity-btn remove-btn center"
+  //                     >
+  //                       -
+  //                     </button>
+  //                     <span className="quantity-text center">
+
+  //                     </span>
+  //                     <button
+
+  //                       className="quantity-btn add-btn center"
+  //                     >
+  //                       +
+  //                     </button>
+  //                   </li>]
   return (
-    <div className="App">
-      
-    </div>
-  )
+    <>
+      <Header
+        products={products}
+        setProducts={setProducts}
+        addToCart={addToCart}
+      ></Header>
+      <Main products={products} setProducts={setProducts} removeFromCart={removeFromCart} addToCart={addToCart}/>
+    </>
+  );
 }
 
-export default App
+export default App;
