@@ -1,6 +1,5 @@
 function Header(props) {
   let productsToDisplay = [...props.products];
-  console.log(productsToDisplay);
   function compareByPrice(a, b) {
     return props.sortInfo.ascending ? a.price - b.price : b.price - a.price;
   }

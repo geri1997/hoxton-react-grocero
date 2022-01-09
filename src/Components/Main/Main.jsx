@@ -10,7 +10,6 @@ function Main({
   setFilterType,
   setSortInfo,
 }) {
-  console.log(products);
   return (
     <main id="cart">
       <h2>Your Cart</h2>
