@@ -5,7 +5,7 @@ function Header(props) {
       <h1>Grocero</h1>
       {/* {props.children.props.children} */}
       <ul className="item-list store--item-list">
-        {props.products.map((product) => (
+        {props.productsToDisplay.map((product) => (
           <li key={product.id}>
             <div className="store--item-icon">
               <img
@@ -15,6 +15,8 @@ function Header(props) {
                 alt={`${product.name}`}
               />
             </div>
+            <span id="amount-in-store">Amount: {product.quantityInStore}</span>
+            <span id="store-price">Price: {product.price}</span>
             <button
               onClick={(e) => {
                 // const newArr = props.products.map(function (item) {

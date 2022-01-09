@@ -41,7 +41,9 @@ button {
 
   background-color: var(--primary-color);
 }
-
+#amount-in-store, #store-price{
+  color: white;
+}
 #store h1 {
   text-align: center;
   color: white;
