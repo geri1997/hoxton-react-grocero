@@ -86,6 +86,11 @@ function App() {
     },
   ]);
   const [filterType, setFilterType] = useState([]);
+  const [sortInfo, setSortInfo] = useState({
+    sorted: false,
+    alphabetically: false,
+    ascending: true,
+  });
   function addToCart(products, product) {
     return products.map(function (item) {
       if (0 < item.quantityInStore && item.quantityInStore <= 10) {
@@ -103,12 +108,30 @@ function App() {
     });
   }
   let productsToDisplay = products;
+  function compareByPrice(a, b) {
+    return sortInfo.ascending ? a.price - b.price : b.price - a.price;
+  }
+  function compareAlphabetically(a, b) {
+    return sortInfo.ascending
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name);
+  }
   function filteredArrByType(productsToDisplay, filterType) {
     return productsToDisplay.filter((product) =>
       filterType.includes(product.type)
     );
   }
-  if (filterType.length!==0)
+
+  if (sortInfo.sorted) {
+    if (sortInfo.alphabetically) {
+      productsToDisplay.sort((a, b) => compareAlphabetically(a, b));
+    } else {
+      productsToDisplay.sort((a, b) => compareByPrice(a, b));
+    }
+  }else{
+      productsToDisplay=products
+  }
+  if (filterType.length !== 0)
     productsToDisplay = filteredArrByType(productsToDisplay, filterType);
 
   //  let arrrrr=[<li >
@@ -192,6 +215,7 @@ function App() {
         addToCart={addToCart}
         setFilterType={setFilterType}
         filterType={filterType}
+        setSortInfo={setSortInfo}
       />
     </>
   );

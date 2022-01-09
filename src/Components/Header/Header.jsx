@@ -15,6 +15,7 @@ function Header(props) {
                 alt={`${product.name}`}
               />
             </div>
+            <span id="amount-in-store">{product.name}</span>
             <span id="amount-in-store">Amount: {product.quantityInStore}</span>
             <span id="store-price">Price: {product.price}</span>
             <button

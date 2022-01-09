@@ -2,10 +2,27 @@ import { useState } from "react";
 import CartProduct from "./CartProduct";
 import Price from "./Price";
 
-function Main({ products, setProducts, addToCart, filterType, setFilterType }) {
+function Main({ products, setProducts, addToCart, filterType, setFilterType ,setSortInfo}) {
+  
+
+  
   return (
     <main id="cart">
       <h2>Your Cart</h2>
+      <button onClick={e=>{
+        setSortInfo({sorted:true,alphabetically:false,ascending:false})
+      }}
+      >Sort High to Low</button>
+      <button onClick={e=>{
+        setSortInfo({sorted:true,alphabetically:false,ascending:true})
+      }}>Sort Low to High</button>
+      <button onClick={e=>{
+        setSortInfo({sorted:true,alphabetically:true,ascending:true})
+      }}>Sort A to Z</button>
+      <button onClick={e=>{
+        setSortInfo({sorted:true,alphabetically:true,ascending:false})
+      }}>Sort Z to A</button>
+
       <label htmlFor="fruit">Fruit</label>
       <input
         onChange={(e) => {
