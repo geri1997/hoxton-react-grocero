@@ -20,6 +20,11 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.filters{
+  display: grid;
+  grid-auto-flow: column;
+}
+
 /* Buttons */
 
 button {

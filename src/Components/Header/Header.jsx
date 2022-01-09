@@ -1,11 +1,38 @@
 function Header(props) {
+  let productsToDisplay = [...props.products];
+  console.log(productsToDisplay);
+  function compareByPrice(a, b) {
+    return props.sortInfo.ascending ? a.price - b.price : b.price - a.price;
+  }
+  function compareAlphabetically(a, b) {
+    return props.sortInfo.ascending
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name);
+  }
+  function filteredArrByType(productsToDisplay, filterType) {
+    return productsToDisplay.filter((product) =>
+      filterType.includes(product.type)
+    );
+  }
+
+  if (props.sortInfo.sorted) {
+    if (props.sortInfo.alphabetically) {
+      productsToDisplay.sort((a, b) => compareAlphabetically(a, b));
+    } else {
+      productsToDisplay.sort((a, b) => compareByPrice(a, b));
+    }
+  } else {
+    productsToDisplay = props.products;
+  }
+  if (props.filterType.length !== 0)
+    productsToDisplay = filteredArrByType(productsToDisplay, props.filterType);
 
   return (
     <header id="store">
       <h1>Grocero</h1>
       {/* {props.children.props.children} */}
       <ul className="item-list store--item-list">
-        {props.productsToDisplay.map((product) => (
+        {productsToDisplay.map((product) => (
           <li key={product.id}>
             <div className="store--item-icon">
               <img
@@ -20,21 +47,7 @@ function Header(props) {
             <span id="store-price">Price: {product.price}</span>
             <button
               onClick={(e) => {
-                // const newArr = props.products.map(function (item) {
-                //   if (0 < item.quantityInStore && item.quantityInStore <= 10) {
-                //     return item.id === product.id
-                //       ? {
-                //           ...item,
-                //           // quantityInCart: item.quantityInCart++,
-                //           // quantityInStore: item.quantityInStore--,
-                //           quantityInCart: item.quantityInCart + 1,
-                //           quantityInStore: item.quantityInStore - 1,
-                //         }
-                //       : item;
-                //   }
-                //   return item;
-                // });
-                props.setProducts(props.addToCart(props.products,product));
+                props.setProducts(props.addToCart(props.products, product));
               }}
             >
               Add to cart
